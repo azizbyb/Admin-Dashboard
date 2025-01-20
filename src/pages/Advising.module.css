@@ -1,0 +1,67 @@
+.advising {
+  padding: 20px;
+  background-color: #f9f9f9;
+}
+
+.headerSection {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #3c4043;
+  text-align: center;
+}
+
+.searchInput {
+  margin-top: 10px;
+  padding: 8px 12px;
+  font-size: 16px;
+  width: 80%;
+  max-width: 400px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  outline: none;
+}
+
+.searchInput:focus {
+  border-color: #007bff;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.table th, .table td {
+  padding: 12px;
+  text-align: left;
+  font-size: 14px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.table th {
+  font-weight: bold;
+  background-color: #f1f3f4;
+  color: #5f6368;
+}
+
+.table tbody tr:nth-child(odd) {
+  background-color: #f8f9fa;
+}
+
+.table tbody tr:hover {
+  background-color: #e8f0fe;
+}
+
+.table td {
+  color: #202124;
+}

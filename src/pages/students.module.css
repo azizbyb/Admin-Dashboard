@@ -42,8 +42,8 @@ th, td {
 }
 
 th {
-  background-color: #4CAF50;
-  color: rgb(0, 0, 0);
+  background-color: #888a8d;
+  color: rgb(255, 255, 255);
 }
 
 td {
@@ -79,4 +79,65 @@ button {
 
 button:hover {
   opacity: 0.8;
+}
+
+.detailView {
+  padding: 20px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  max-width: 500px;
+  margin: 0 auto;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.backButton {
+  display: inline-block;
+  margin-bottom: 20px;
+  padding: 8px 12px;
+  font-size: 14px;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.backButton:hover {
+  background-color: #0056b3;
+}
+
+.detailView h2 {
+  margin-bottom: 20px;
+  font-size: 20px;
+  color: #333;
+}
+
+.detailView p {
+  font-size: 16px;
+  margin: 8px 0;
+}
+
+.fileList {
+  list-style-type: none;
+  padding: 0;
+}
+
+.fileItem {
+  margin: 8px 0;
+}
+
+.fileLink {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.fileLink:hover {
+  text-decoration: underline;
+}
+
+.detailView h3 {
+  margin-top: 20px;
+  font-size: 18px;
+  color: #333;
 }

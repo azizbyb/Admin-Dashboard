@@ -9,7 +9,7 @@ const Sidebar = () => {
       {/* Logo and Admin Dashboard Title */}
       <div className={styles.logoContainer}>
         <img src="src/assets/cvsu.png" alt="Logo" className={styles.logo} /> {/* Update logo path */}
-        <h2 className={styles.dashboardTitle}>Admin Dashboard</h2>
+        <h2 className={styles.dashboardTitle}>Faculty Dashboard</h2>
       </div>
 
       {/* Navigation Links */}
@@ -31,14 +31,26 @@ const Sidebar = () => {
         <FaGraduationCap className={styles.icon} />
         Students
       </NavLink>
+      
+      
       <NavLink
-        to="/masterlist"
+        to="/schedule"
         className={({ isActive }) =>
           isActive ? `${styles.navLink} ${styles.active}` : styles.navLink
         }
       >
         <FaClipboardList className={styles.icon} />
-        Masterlist
+        Schedule
+      </NavLink>
+      
+      <NavLink
+        to="/advising"
+        className={({ isActive }) =>
+          isActive ? `${styles.navLink} ${styles.active}` : styles.navLink
+        }
+      >
+        <FaClipboardList className={styles.icon} />
+        Advising
       </NavLink>
     </div>
   );

@@ -1,84 +1,143 @@
-import React, { useState } from 'react';
-import styles from './Students.module.css';
+import React, { useState } from "react";
+import styles from "./Students.module.css";
 
 const Students = () => {
-  // Define some sample student data
   const [students] = useState([
-    { id: 1, firstName: 'Ivan', lastName: 'lok', studentType: 'Regular', course: 'BSCS' },
-    { id: 2, firstName: 'Bern', lastName: 'Loq', studentType: 'Irregular', course: 'BSCS' },
-    { id: 3, firstName: 'Aziz', lastName: 'Bayabao', studentType: 'Shiftee', course: 'BSCS' },
-    { id: 4, firstName: 'Dominant', lastName: 'Dioren', studentType: 'Shiftee', course: 'BSCS' },
-    { id: 5, firstName: 'Joshua', lastName: 'Gamedeveloper', studentType: 'Shiftee', course: 'BSCS' },
-    { id: 6, firstName: 'Gragas', lastName: 'Bagares', studentType: 'Shiftee', course: 'BSCS' },
-    { id: 7, firstName: 'Huxley', lastName: 'Wildmutt', studentType: 'Shiftee', course: 'BSCS' },
-    { id: 8, firstName: 'Bok', lastName: 'Bok', studentType: 'Shiftee', course: 'BSCS' },
-    { id: 9, firstName: 'James', lastName: 'ragezu', studentType: 'Shiftee', course: 'BSCS' },
-    // Add more students as needed
+    {
+      id: 1,
+      firstName: "Ivan",
+      lastName: "Loque",
+      studentType: "Regular",
+      course: "BSCS",
+      files: ["Transcript.pdf", "EnrollmentForm.pdf"],
+    },
+    {
+      id: 2,
+      firstName: "Jimmar",
+      lastName: "Idioma",
+      studentType: "Irregular",
+      course: "BSCS",
+      files: ["IDCard.pdf"],
+    },
+    {
+      id: 3,
+      firstName: "Aziz",
+      lastName: "Bayabao",
+      studentType: "Shiftee",
+      course: "BSCS",
+      files: [],
+    },
+    {
+      id: 4,
+      firstName: "Jericho",
+      lastName: "Figueroa",
+      studentType: "Shiftee",
+      course: "BSCS",
+      files: ["COG.pdf",]
+    },
   ]);
 
-  // State to hold the search input
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState("");
+  const [selectedStudent, setSelectedStudent] = useState(null);
 
-  // Filter students based on the last name
-  const filteredStudents = students.filter(student =>
-    student.lastName.toLowerCase().includes(searchQuery.toLowerCase())
+  const filteredStudents = students.filter((student) =>
+    Object.values(student).some((value) =>
+      value.toString().toLowerCase().includes(searchQuery.toLowerCase())
+    )
   );
 
-  // Handle change in search input
   const handleSearchChange = (event) => {
     setSearchQuery(event.target.value);
   };
 
+  const handleView = (student) => {
+    setSelectedStudent(student);
+  };
+
+  const handleBack = () => {
+    setSelectedStudent(null);
+  };
+
   return (
     <div className={styles.container}>
+      {selectedStudent ? (
+        <div className={styles.detailView}>
+          <button onClick={handleBack} className={styles.backButton}>
+            Back
+          </button>
+          <h2>Student Details</h2>
+          <p><strong>ID:</strong> {selectedStudent.id}</p>
+          <p><strong>First Name:</strong> {selectedStudent.firstName}</p>
+          <p><strong>Last Name:</strong> {selectedStudent.lastName}</p>
+          <p><strong>Student Type:</strong> {selectedStudent.studentType}</p>
+          <p><strong>Course:</strong> {selectedStudent.course}</p>
 
-      
-      {/* Search Bar */}
-      <div className={styles.searchBar}>
-        <input
-          type="text"
-          placeholder="Search by Last Name"
-          value={searchQuery}
-          onChange={handleSearchChange}
-          className={styles.searchInput}
-        />
-      </div>
-
-      {/* Student Table */}
-      <table className={styles.table}>
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Student Type</th>
-            <th>Course</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {filteredStudents.length > 0 ? (
-            filteredStudents.map((student) => (
-              <tr key={student.id}>
-                <td>{student.id}</td>
-                <td>{student.firstName}</td>
-                <td>{student.lastName}</td>
-                <td>{student.studentType}</td>
-                <td>{student.course}</td>
-                <td>
-                  <button className={styles.viewButton}>View</button>
-                  <button className={styles.editButton}>Edit</button>
-                  <button className={styles.deleteButton}>Delete</button>
-                </td>
-              </tr>
-            ))
+          {/* File Attachments Section */}
+          <h3>Attached Files</h3>
+          {selectedStudent.files.length > 0 ? (
+            <ul className={styles.fileList}>
+              {selectedStudent.files.map((file, index) => (
+                <li key={index} className={styles.fileItem}>
+                  <a href={`#${file}`} className={styles.fileLink}>
+                    {file}
+                  </a>
+                </li>
+              ))}
+            </ul>
           ) : (
-            <tr>
-              <td colSpan="6">No students found</td>
-            </tr>
+            <p>No files attached.</p>
           )}
-        </tbody>
-      </table>
+        </div>
+      ) : (
+        <>
+          <div className={styles.searchBar}>
+            <input
+              type="text"
+              placeholder="Search by any field"
+              value={searchQuery}
+              onChange={handleSearchChange}
+              className={styles.searchInput}
+            />
+          </div>
+          <table className={styles.table}>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Student Type</th>
+                <th>Course</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {filteredStudents.length > 0 ? (
+                filteredStudents.map((student) => (
+                  <tr key={student.id}>
+                    <td>{student.id}</td>
+                    <td>{student.firstName}</td>
+                    <td>{student.lastName}</td>
+                    <td>{student.studentType}</td>
+                    <td>{student.course}</td>
+                    <td>
+                      <button
+                        onClick={() => handleView(student)}
+                        className={styles.viewButton}
+                      >
+                        View
+                      </button>
+                    </td>
+                  </tr>
+                ))
+              ) : (
+                <tr>
+                  <td colSpan="6">No students found</td>
+                </tr>
+              )}
+            </tbody>
+          </table>
+        </>
+      )}
     </div>
   );
 };
